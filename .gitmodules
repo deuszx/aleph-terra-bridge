@@ -1,0 +1,6 @@
+[submodule "aleph-node"]
+	path = aleph-node
+	url = https://github.com/Cardinal-Cryptography/aleph-node
+[submodule "LocalTerra"]
+	path = LocalTerra
+	url = https://github.com/deuszx/LocalTerra
