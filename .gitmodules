@@ -1,6 +1,6 @@
-[submodule "aleph-node"]
-	path = aleph-node
-	url = https://github.com/Cardinal-Cryptography/aleph-node
+[submodule "local-aleph"]
+	path = local-aleph
+	url = https://github.com/deuszx/local-aleph
 [submodule "LocalTerra"]
 	path = LocalTerra
-	url = https://github.com/deuszx/LocalTerra
+	url = https://www.github.com/terra-money/LocalTerra

@@ -1,9 +1,8 @@
 build-deps: build-aleph build-localterra
 
 build-aleph:
-	cd aleph-node && \
-	cargo build --release -p aleph-node && \
-	docker build -t aleph-node -f docker/Dockerfile .
+	cd local-aleph && \
+	make build-aleph-image
 
 build-localterra:
 	cd LocalTerra && \
@@ -13,9 +12,22 @@ stop-localterra:
 	cd LocalTerra && \
 	docker-compose stop
 
+stop-localaleph:
+	cd local-aleph && \
+	docker-compose stop
+
+setup-deps:
+	git submodule add --depth 1 https://github.com/deuszx/local-aleph && \
+	git submodule add --depth 1 https://www.github.com/terra-money/LocalTerra && \
+	git submodule init
+
 update-deps:
-	git submodule init && \
-	git submodule update
+	git submodule update --init --recursive && \
+	cd local-aleph && \
+	git fetch && git pull && \
+	make update-aleph-node && \
+	cd ../LocalTerra && \
+	git fetch && git pull
 
 # Clean the "world state" of the LocalTerra.
 clean-localterra:
@@ -25,7 +37,7 @@ clean-localterra:
 start: start-aleph start-localterra
 
 start-aleph:
-	cd aleph-node/docker && \
+	cd local-aleph && \
 	docker-compose up
 
 start-localterra:
